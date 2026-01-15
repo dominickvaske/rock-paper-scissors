@@ -1,17 +1,9 @@
-let humanScore = 0;
-let computerScore = 0;
-
-const rockBtn = document.querySelector("rockBtn");
-const paperBtn = document.querySelector("paperBtn");
-const scissorsBtn = document.querySelector("scissorsBtn");
+// let humanScore = 0;
+// let computerScore = 0;
+const humanScore = document.querySelector("#humanScore");
+const computerScore = document.querySelector("#computerScore");
 
 const btnList = document.querySelector("ul");
-
-// btnList.addEventListener("click", (event) => {
-// 	if (event.target.tagName === 'BUTTON') {
-// 		playRound(event.target.innerText);
-// 	}
-// });
 
 btnList.addEventListener("click", playerSelects);
 
@@ -44,24 +36,30 @@ function playRound(humanChoice) {
 	let computerChoice = getComputerChoice();
 	// let humanChoice = getHumanChoice();
 	humanChoice = humanChoice.toLowerCase();
+
+	let hScore = parseInt(humanScore.innerText);
+	let cScore = parseInt(computerScore.innerText);
 	
 	if (humanChoice === computerChoice) {
 		console.log("Its a tie!");
 	} else if (humanChoice === "paper" && computerChoice === "rock") {
-		humanScore += 1;
+		hScore += 1;
 		console.log("You win! Paper beats Rock");
 	} else if (humanChoice === "rock" && computerChoice === "scissors") {
-		humanScore += 1;
+		hScore += 1;
 		console.log("You win! Rock beats Scissors");
 	} else if (humanChoice === "scissors" && computerChoice === "paper") {
-		humanScore += 1;
+		hScore += 1;
 		console.log("You win! Scissors beats Paper");
 	} else {
-		computerScore += 1;
+		cScore += 1;
 		computerChoice = computerChoice[0].toUpperCase() + computerChoice.slice(1);
 		humanChoice = humanChoice[0].toUpperCase() + humanChoice.slice(1);
 		console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
 	}
+
+	humanScore.innerText = hScore;
+	computerScore.innerText = cScore;
 }
 
 function playGame() {
@@ -71,5 +69,3 @@ function playGame() {
 	// 	console.log(`Current Score: Human: ${humanScore}, Computer: ${computerScore}`)
 	// }
 }
-
-playGame()
